@@ -9,7 +9,6 @@ module Gem
   class << self
 
     def current_spec
-      p caller_locations
       location = caller_locations[1]
       if location
         path = location.path
