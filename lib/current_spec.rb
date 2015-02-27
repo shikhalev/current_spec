@@ -8,8 +8,8 @@ module Gem
 
   class << self
 
-    def current_spec
-      location = caller_locations[1]
+    def current_spec location = nil
+      location ||= caller_locations[0]
       if location
         path = location.path
         Gem::Specification.find do |spec|
@@ -21,7 +21,7 @@ module Gem
     end
 
     def current_spec_version
-      spec = current_spec
+      spec = current_spec caller_locations[0]
       if spec
         spec.version
       else
