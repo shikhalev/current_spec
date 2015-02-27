@@ -20,8 +20,9 @@ module Gem
       end
     end
 
-    def current_spec_version
-      spec = current_spec caller_locations[0]
+    def current_spec_version location = nil
+      location ||= caller_locations[0]
+      spec = current_spec location
       if spec
         spec.version
       else
